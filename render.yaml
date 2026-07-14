@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: modunu-bul
+    env: java
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/*.jar"
+    envVars:
+      - key: SERVER_PORT
+        value: 10000
