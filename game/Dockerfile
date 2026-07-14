@@ -1,5 +1,5 @@
 # Java 17 ortamını kullan
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 
 # Proje dosyalarını kopyala
 COPY . .
