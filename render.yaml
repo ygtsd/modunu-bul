@@ -1,9 +1,33 @@
+databases:
+  - name: modunubul-db
+    databaseName: modunubul_db
+    user: modunubul
+    plan: free
+
 services:
   - type: web
     name: modunu-bul
-    env: java
-    buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/*.jar"
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
     envVars:
-      - key: SERVER_PORT
-        value: 10000
+      - key: DB_HOST
+        fromDatabase:
+          name: modunubul-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: modunubul-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: modunubul-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: modunubul-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: modunubul-db
+          property: password
